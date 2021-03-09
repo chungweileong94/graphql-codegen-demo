@@ -1,0 +1,27 @@
+overwrite: true
+schema:
+  '../server/src/schema/*.ts':
+    noRequire: true
+documents: './src/apollo/graphql/*.gql'
+watch:
+  - '../server/src/schema/*.ts'
+  - './src/apollo/graphql/*.gql'
+generates:
+  './src/apollo/generated/graphql.ts':
+    plugins:
+      - add:
+          content: '/* DO NOT MODIFY THIS FILE DIRECTLY */'
+      - add:
+          content: '/* Please use `yarn graphql-codegen` to generate this file */'
+      - add:
+          content: '/* eslint-disable */'
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHOC: false
+      withComponent: false
+      withHooks: true
+# hooks:
+#   afterAllFileWrite:
+#     - prettier --write

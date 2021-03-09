@@ -1,0 +1,11 @@
+query userList {
+  users {
+    id
+    name
+    subscription
+    cars {
+      brand
+      licensePlate
+    }
+  }
+}

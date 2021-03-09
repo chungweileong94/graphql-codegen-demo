@@ -1,0 +1,28 @@
+overwrite: true
+schema:
+  './src/schema/*.ts':
+    noRequire: true
+watch:
+  - './src/schema/*.ts'
+generates:
+  './src/generated/graphql.ts':
+    plugins:
+      - add:
+          content: '/* DO NOT MODIFY THIS FILE DIRECTLY */'
+      - add:
+          content: '/* Please use `yarn graphql-codegen` to generate this file */'
+      - add:
+          content: '/* eslint-disable */'
+      - 'typescript'
+      - 'typescript-resolvers'
+
+  # For VSCode Apollo tooling
+  './src/generated/introspection.json':
+    plugins:
+      - introspection
+    config:
+      minify: true
+      schemaDescription: true
+# hooks:
+#   afterAllFileWrite:
+#     - prettier --write
